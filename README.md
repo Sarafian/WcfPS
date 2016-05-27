@@ -1,12 +1,5 @@
 # WcfPS
-A powershell module to help work with WCF Services 
-
-| Branch | Status
-| ---------- | ---------
-| **master** | ![masterstatus](https://asarafian.visualstudio.com/DefaultCollection/_apis/public/build/definitions/9411077a-da68-4370-9d62-7fa8ec77dfa9/9/badge)
-| **develop** | ![masterstatus](https://asarafian.visualstudio.com/DefaultCollection/_apis/public/build/definitions/9411077a-da68-4370-9d62-7fa8ec77dfa9/8/badge)
-
-[MarkdownPS](https://www.powershellgallery.com/packages/MarkdownPS/) on powershell gallery.
+A powershell module to help work with WCF Services.
 
 # Commandlets
 
@@ -30,6 +23,9 @@ The test scripts acts as a good showcase on how to use the module's cmdlets.
 
 * [Test-ISHExternal.ps1](Pester\Test-ISHExternal.ps1]
 * [Test-WSTrust.ps1](Pester\Test-WSTrust.ps1]
+
+## Not implemented paths
+Since I don't have access to various soap endpoints, some flows are not implemented and will throw a new `NotImplementedException`.   
 
 # Working with the module
 
