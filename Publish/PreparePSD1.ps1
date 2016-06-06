@@ -8,7 +8,7 @@ $semVersion=Get-Version
 $author="Alex Sarafian"
 $company=""
 $copyright="(c) $($date.Year) $company. All rights reserved."
-$description="A module to help render Markdown from powershell"
+$description="A powershell module to help work with WCF Services."
 
 $modules=Get-ChildItem "$PSScriptRoot\..\Modules\"
 
@@ -30,7 +30,7 @@ foreach($module in $modules)
         "Guid"=$guid;
         "ModuleVersion"=$semVersion;
         "Path"=$psd1Path;
-        "Tags"=@('Markdown', 'Tools');
+        "Tags"=@('Wcf', 'Tools');
         "LicenseUri"='https://github.com/Sarafian/WcfPS/blob/master/LICENSE';
         "ProjectUri"= 'http://sarafian.github.io/WcfPS/';
         "ReleaseNotes"= 'https://github.com/Sarafian/WcfPS/blob/master/CHANGELOG.md';
@@ -39,7 +39,7 @@ foreach($module in $modules)
         "PowerShellHostVersion"="4.0"
     }
 
-    New-ModuleManifest  @hash 
+    New-ModuleManifest  @hash
 }
 
 
