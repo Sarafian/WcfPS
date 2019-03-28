@@ -32,11 +32,10 @@ foreach($module in $modules)
         "Path"=$psd1Path;
         "Tags"=@('Wcf', 'Tools');
         "LicenseUri"='https://github.com/Sarafian/WcfPS/blob/master/LICENSE';
-        "ProjectUri"= 'http://sarafian.github.io/WcfPS/';
+        "ProjectUri"= 'https://github.com/Sarafian/WcfPS/';
         "ReleaseNotes"= 'https://github.com/Sarafian/WcfPS/blob/master/CHANGELOG.md';
         "CmdletsToExport" = $exportedNames;
         "FunctionsToExport" = $exportedNames;
-        "PowerShellHostVersion"="4.0"
     }
 
     New-ModuleManifest  @hash
