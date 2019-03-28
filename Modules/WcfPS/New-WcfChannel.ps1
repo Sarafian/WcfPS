@@ -8,15 +8,19 @@ Add-Type -AssemblyName "System.Runtime.Serialization"
 function New-WcfChannel {
     [CmdletBinding()]
     Param (
-        [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
+        [Parameter(Mandatory=$true, ValueFromPipeline=$true,ParameterSetName="NoAuthentication")]
+        [Parameter(Mandatory=$true, ValueFromPipeline=$true,ParameterSetName="UsernamePassword")]
+        [Parameter(Mandatory=$true, ValueFromPipeline=$true,ParameterSetName="Token")]
         $Endpoint,
+        [Parameter(Mandatory=$false,ParameterSetName="NoAuthentication")]
+        [Parameter(Mandatory=$false,ParameterSetName="UsernamePassword")]
+        [Parameter(Mandatory=$false,ParameterSetName="Token")]
         [Parameter(Mandatory=$false)]
         [System.Type]$ProxyType=$null,
-        [Parameter(Mandatory=$false,ParameterSetName="UsernamePassword")]
+        [Parameter(Mandatory=$true,ParameterSetName="UsernamePassword")]
         [PSCredential]$Credential,
-        [Parameter(Mandatory=$false,ParameterSetName="Token")]
+        [Parameter(Mandatory=$true,ParameterSetName="Token")]
         [System.IdentityModel.Tokens.GenericXmlSecurityToken]$Token
-
     )
     Begin {
     }
@@ -41,13 +45,21 @@ function New-WcfChannel {
         }
 
         $client=New-Object $ProxyType($Endpoint.Binding, $Endpoint.Address)
-        if($Credential)
+
+        switch($PSCmdlet.ParameterSetName)
         {
-            throw (New-Object System.NotImplementedException)
-        }
-        if($Token)
-        {
-            $client.ChannelFactory.CreateChannelWithIssuedToken($Token);
+            'NoAuthentication' {
+                $client.ChannelFactory.CreateChannel()
+                break;
+            }
+            'UsernamePassword' {
+                throw (New-Object System.NotImplementedException)
+                break;
+            }
+            'Token' {
+                $client.ChannelFactory.CreateChannelWithIssuedToken($Token)
+                break;
+            }
         }
     }
 
